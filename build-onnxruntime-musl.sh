@@ -51,6 +51,7 @@ function cmakeBuild() {
 #  popd
 #  BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   cmake -DCMAKE_BUILD_TYPE=$1 \
+    -DCMAKE_EXE_LINKER_FLAGS="-latomic"  \
     -DCMAKE_TOOLCHAIN_FILE=../musl-cross.toolchain.cmake \
     -DCMAKE_INSTALL_PREFIX=install \
     $(cat ../onnxruntime_options-v1.15.1.txt) \
