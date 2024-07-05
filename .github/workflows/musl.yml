@@ -66,6 +66,7 @@ jobs:
       - name: build
         run: |
           cd onnxruntime-${{ matrix.ver.onnx }}
+          sed -i 's/#include <execinfo.h>/\/\/#include <execinfo.h>/' onnxruntime/core/platform/posix/stacktrace.cc
           chmod a+x ${{ env.BUILD_SCRIPT }}
           ./${{ env.BUILD_SCRIPT }} ${{ matrix.arch }} /opt/riscv64-unknown-linux-musl
 
