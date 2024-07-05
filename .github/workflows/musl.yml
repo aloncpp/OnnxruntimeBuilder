@@ -68,6 +68,7 @@ jobs:
           cd onnxruntime-${{ matrix.ver.onnx }}
           sed -i 's/#include <execinfo.h>/\/\/#include <execinfo.h>/' onnxruntime/core/platform/posix/stacktrace.cc
           sed -i '/auto\* nchwc_input_0 = nchwc_inputs\[0\];/i if (nchwc_inputs.empty()) {return;}' onnxruntime/core/optimizer/nchwc_transformer.cc
+          sed -i '/target_link_libraries(onnxruntime PRIVATE/a \    atomic' cmake/onnxruntime.cmake
           chmod a+x ${{ env.BUILD_SCRIPT }}
           ./${{ env.BUILD_SCRIPT }} ${{ matrix.arch }} /opt/riscv64-unknown-linux-musl
 
